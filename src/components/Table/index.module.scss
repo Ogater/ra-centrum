@@ -1,0 +1,138 @@
+@use "../../styles/tokens.scss" as *;
+
+.tableWrapper {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 14px;
+  color: #292d32;
+}
+
+.tableRowHeader {
+  background: #f6f5f9;
+  text-align: left;
+  height: 40px;
+  font-weight: 600;
+  color: #8a849c;
+}
+
+.tableCellCheck {
+  width: 40px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.tableCellTitle {
+  width: 40%;
+  padding: 12px;
+}
+
+.tableCellDates,
+.tableCellPriority,
+.tableCellStatus,
+.tableCellUsers {
+  padding: 12px;
+  white-space: nowrap;
+}
+
+.tableRow {
+  border-bottom: 1px solid #ebeaf0;
+  height: 56px;
+  vertical-align: middle;
+
+  &:hover { background: #faf9fc; }
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cfcfe2;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.taskTitle {
+  font-weight: 500;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.taskInfo {
+  display: flex;
+  gap: 12px;
+  color: #8a849c;
+  font-size: 12px;
+  align-items: center;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dateCell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.priorityCell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #e1a314;
+  font-weight: 500;
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #a2d06b;
+}
+
+.usersCell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.avatarWrapper {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.moreAvatars {
+  background: #f4f3f8;
+  color: #8a849c;
+  font-size: 12px;
+}

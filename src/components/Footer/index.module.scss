@@ -1,0 +1,39 @@
+/* Контейнер низа страницы */
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Разделитель 1px, шириной 1720px на 1920, центрируем.
+   На меньших ширинах — не вылезает за контент: 100% - 200px (по 100px слева/справа). */
+.footer__divider {
+  height: 1px;
+  width: min(1720px, 100% - 200px);
+  background: #D7D8E433;
+}
+
+/* Текстовая строка: паддинги 12/12, цвет и размер по ТЗ, по центру. */
+.footer__legal {
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  color: #58649C;
+  font-family: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+  text-align: center;
+  width: min(1720px, 100% - 200px);
+  /* чтобы текст визуально совпадал по ширине с разделителем */
+}
+
+/* Небольшая адаптация: на очень узких экранах уменьшаем боковые поля до 32px*2 */
+@media (max-width: 768px) {
+  .footer__divider,
+  .footer__legal {
+    width: calc(100% - 64px);
+  }
+}

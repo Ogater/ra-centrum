@@ -1,0 +1,100 @@
+.banners {
+  padding: 0 var(--pad-x) 48px;
+
+  &__viewport {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    will-change: transform;
+  }
+
+  /* по умолчанию — 2 в ряд */
+  &__slide {
+    flex: 0 0 50%;
+  }
+
+  /* Кнопки */
+  &__controls {
+    position: absolute;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__controlBtn {
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    line-height: 0;
+    cursor: pointer;
+  }
+}
+
+/* 320 */
+@media (max-width: 767px) {
+  .banners {
+    &__slide {
+      flex-basis: 100%; /* 1 в ряд */
+    }
+
+    &__controls {
+      left: 20px;
+      bottom: 31px;
+      gap: 12px;
+    }
+  }
+}
+
+/* 768 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .banners {
+    &__slide {
+      flex-basis: 100%; /* 1 в ряд */
+    }
+
+    &__controls {
+      left: 32px;
+      bottom: 40px;
+      gap: 12px;
+    }
+  }
+}
+
+/* 1024 */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .banners {
+    &__controls {
+      left: 62px;
+      bottom: 32px;
+      gap: 12px;
+    }
+  }
+}
+
+/* 1440 */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .banners {
+    &__controls {
+      left: 80px;
+      bottom: 80px;
+      gap: 12px;
+    }
+  }
+}
+
+/* 1920 */
+@media (min-width: 1920px) {
+  .banners {
+    &__controls {
+      left: 100px;
+      bottom: 130px;
+      gap: 30px;
+    }
+  }
+}

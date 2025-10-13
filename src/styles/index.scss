@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap");
+
+
+
+.theme-default {
+  --brand: #16256D;
+  --header-h: 84px;
+  --pad-x: 24px;
+  --font-family: "Raleway", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --bg: #fff;
+  --text: var(--brand);
+}
+
+@media (min-width: 1440px) {
+  .theme-default { --pad-x: 80px; }
+}
+@media (min-width: 1920px) {
+  .theme-default { --pad-x: 100px; }
+}
+
+body { margin: 0; 
+  background: #fff; }
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  color: var(--text);
+  background: var(--bg);
+}
+
+.app__content {
+  padding: 24px var(--pad-x);
+}
+

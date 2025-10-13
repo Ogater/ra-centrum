@@ -1,0 +1,167 @@
+/* ===== Palette ===== */
+$brand:     #16256d;
+$brandBlue: #1b3ab5;
+$yellow:    #e3c14a;
+$panel:     #f7f7fa;
+
+/* ===== Section ===== */
+.about {
+  padding-top: 130px;
+  padding-bottom: 32px;
+  padding-left: 320px; /* 1920 */
+  padding-right: 320px;
+
+  &__title {
+    margin: 0;
+    color: $brand;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.1;
+    font-size: 56px;         /* 1920/1440 */
+    min-height: 166px;
+    display: grid;
+    align-items: center;
+  }
+
+  /* ===== Наша місія ===== */
+  &__missionRow {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  &__tab {
+    appearance: none;
+    border: 0;
+    border-radius: 16px;
+    background: $brandBlue;
+    color: #fff;
+    font-weight: 800;
+    white-space: nowrap;
+    padding: 0 36px;
+    height: clamp(120px, 10vw + 30px, 166px);
+    font-size: clamp(28px, 1.6vw, 36px);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    cursor: default;
+  }
+
+  &__missionPanel {
+    border-radius: 16px;
+    background: transparent;
+    border: 1px solid $brandBlue;
+    padding: 0 36px;
+    height: clamp(120px, 10vw + 30px, 166px);
+    display: grid;
+    align-items: center;
+  }
+
+  &__missionText {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(28px, 2.1vw, 40px);
+    line-height: clamp(34px, 2.5vw, 47px);
+  }
+  &__missionBlue   { color: $brandBlue; }
+  &__missionYellow { color: $yellow; }
+
+  /* ===== Що ми робимо ===== */
+  &__what { margin-top: 40px; }
+
+  &__whatPanel {
+    background: $panel;
+    border-radius: 0;
+    padding-block: clamp(40px, 6.3vw, 95.5px);
+    padding-inline: clamp(20px, 8.9vw, 128px);
+    position: relative; /* для центрирования стрелок по всей панели */
+  }
+
+  /* ===== Slider ===== */
+  &__sliderViewport {
+    position: relative;
+    overflow: hidden;   /* окно просмотра */
+    /* убрал min-height — высота теперь только из контента */
+  }
+
+  &__sliderTrack {
+    display: flex;
+    /* ширину и transform выставляем инлайном по пикселям из JSX */
+    transition: transform 500ms ease-in-out;
+    will-change: transform;
+  }
+
+  &__slide {
+    flex: 0 0 auto;     /* ширину задаём инлайном (равной viewport) */
+    display: grid;
+    justify-items: center;
+  }
+
+  /* Заголовок в слайдах */
+  &__slideTitle,
+  &__slideTitleMain {
+    text-align: center;
+    color: $brand;
+    font-weight: 800;
+    font-size: clamp(28px, 2.1vw, 36px);
+    margin-bottom: 32px; /* от заголовка до текста */
+  }
+
+  /* главный заголовок для первого слайда (визуально как &__whatTitle) */
+  &__slideTitleMain { }
+
+  &__whatText {
+    margin: 0;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.25;
+    font-size: clamp(28px, 2.1vw, 40px);
+  }
+  &__whatYellow { color: $yellow; }
+  &__whatBlue   { color: $brandBlue; }
+
+  /* Навигация (стрелки) — центр по высоте панели, 40px от краёв */
+  &__whatNav {
+    pointer-events: none;
+    position: absolute;
+    inset: 0; /* растягиваем на всю панель */
+  }
+  &__whatBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;                 /* фикс: 40px от левого края */
+    width: 40px;
+    height: 40px;
+    border: 0;
+    padding: 0;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(22,37,109,.15);
+    display: grid;
+    place-items: center;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  &__whatBtn.isRight { left: auto; right: 40px; } /* фикс: 40px от правого края */
+}
+
+/* ===== Внешние брейки (края/отступ сверху) ===== */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .about { padding-left: 80px; padding-right: 80px; }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .about { padding-top: 110px; padding-left: 62px; padding-right: 62px; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about { padding-top: 110px; padding-left: 32px; padding-right: 32px; }
+}
+@media (max-width: 767px) {
+  .about {
+    padding-top: 88px; padding-left: 20px; padding-right: 20px;
+
+    &__missionRow { grid-template-columns: 1fr; gap: 40px; }
+    &__missionPanel { background: #fff; }
+  }
+}

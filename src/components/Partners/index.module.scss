@@ -1,0 +1,72 @@
+/* palette */
+$brand:  #16256d;
+$panel:  #f7f7fa;
+
+/* секция */
+.partners {
+  margin-top: 80px;           /* от Команда до Партнери — 80 */
+  padding-left: 320px;        /* 1920 */
+  padding-right: 320px;
+
+  @media (min-width: 1440px) and (max-width: 1919px) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    padding-left: 62px;
+    padding-right: 62px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @media (max-width: 767px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  &__title {
+    margin: 0 0 24px;
+    text-align: center;
+    color: $brand;
+    font-family: Raleway, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 36px;   /* из макета: 36/42 */
+    line-height: 42px;
+  }
+
+  /* центрируем карты ровно по центру, с шагом 40px, без растягивания */
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   /* <— центр ряда */
+    gap: 40px;                 /* расстояние между карточками */
+  }
+}
+
+/* карточка логотипа — точный размер 290×100 */
+.logoCard {
+  width: 290px;
+  height: 100px;
+  box-sizing: border-box;   /* <— padding внутри 100px */
+  border-radius: 12px;
+  background: #f7f7fa;
+
+  display: flex;
+  align-items: center;      /* вертикальный центр */
+  justify-content: center;  /* горизонтальный центр */
+
+  padding: 30px 0;          /* как в макете */
+  list-style: none;         /* на всякий случай, чтобы маркер не всплывал */
+}
+
+.logoCard__img {
+  display: block;
+  width: 110px;
+  height: 40px;
+  object-fit: contain;
+}

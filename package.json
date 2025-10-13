@@ -1,0 +1,30 @@
+{
+  "name": "react-clean-starter-mods",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint:js": "eslint \"src/**/*.{js,jsx}\"",
+    "lint:css": "stylelint \"src/**/*.{css,scss}\"",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.0",
+    "eslint": "^9.12.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "prettier": "^3.3.3",
+    "stylelint": "^16.8.1",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "stylelint-scss": "^6.5.1",
+    "sass": "^1.77.0"
+  }
+}

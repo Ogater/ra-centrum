@@ -1,0 +1,199 @@
+:root {
+  --brand: #16256d;
+  --blue-accent: #1b3ab5;
+}
+
+/* базовый хедер */
+.header {
+  height: 84px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 100px;
+  padding-right: 100px;
+  z-index: 2000; 
+
+  border-bottom: 1px solid #EDF0F6;
+
+  &__inner {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* left / center / right */
+    align-items: center;
+  }
+
+  &__left  { display: flex; align-items: center; gap: 12px; }
+
+  &__logo {
+    width: 240px;
+    height: 50px;
+    object-fit: contain;
+    display: block;
+  }
+
+  &__nav { display: none; }
+  @media (min-width: 1440px) {
+    &__nav {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      font-size: 16px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+  }
+  &__navLink {
+    text-decoration: none;
+    color: var(--brand);
+    transition: opacity .15s ease;
+  }
+  &__navLink:hover { opacity: .7; }
+
+  &__right {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    justify-self: end;
+    grid-column: 3;
+    position: relative;
+  }
+}
+
+/* <1440: две колонки, правый блок остаётся справа */
+@media (max-width: 1439px) {
+  .header__inner { grid-template-columns: 1fr auto; }
+  .header__right { grid-column: 2; justify-self: end; }
+}
+
+/* логотип меньше на очень узких */
+@media (max-width: 360px){
+  .header__logo { width: 196px; height: 40px; }
+}
+
+/* ===== десктопный язык (≥1025) ===== */
+.language {
+  position: relative;
+  z-index: 2100;
+
+  /* скрыть на планшетах/мобилках */
+  @media (max-width: 1024px){ display: none; }
+}
+.language__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid #E3E6F0;
+  background: #F6F7FC;
+  color: var(--brand);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.language__current { line-height: 1; }
+.language__caret   { transform: translateY(1px); }
+
+.language__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 140px;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid #E3E6F0;
+  background: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(22, 37, 109, 0.08);
+  display: none;
+  list-style: none; /* без точек */
+  margin: 0;
+}
+.isOpen .language__menu { display: block; }
+
+.language__item {
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--brand);
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+.language__item + .language__item { margin-top: 4px; }
+.language__item:hover { background: #F2F4FB; }
+.isActive { font-weight: 700; color: var(--blue-accent); }
+
+/* ===== мобильное меню (≤1024) ===== */
+.mobile {
+  display: none;
+  @media (max-width: 1024px){ display: block; }
+  position: relative;
+  z-index: 2300;
+}
+.mobile__toggle {
+  height: 40px;
+  width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  border: 1px solid #E3E6F0; /* «серая рамка как на контактах» */
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+.mobile__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 260px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #E3E6F0;
+  background: #FFFFFF;
+  box-shadow: 0 14px 32px rgba(22,37,109,.12);
+  display: none;
+  z-index: 2400;
+}
+.mobile__menu.isOpen { display: block; }
+
+.mobile__link {
+  display: block;
+  padding: 10px 8px;
+  border-radius: 10px;
+  color: var(--brand);
+  text-decoration: none;
+  font-size: 16px;
+}
+.mobile__link:hover { background: #F2F4FB; }
+
+.mobile__langs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #EDF0F6;
+  margin-top: 8px;
+}
+.mobile__lang {
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid #E3E6F0;
+  background: #F6F7FC;
+  color: var(--brand);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mobile__lang.isActive {
+  border-color: var(--blue-accent);
+  color: var(--blue-accent);
+}
+
+/* адаптив паддингов шапки */
+@media (max-width: 1023px){
+  .header { padding-left: 32px; padding-right: 32px; }
+}
+@media (max-width: 767px){
+  .header { padding-left: 20px; padding-right: 20px; }
+}
