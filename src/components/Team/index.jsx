@@ -25,7 +25,7 @@ export default function Team() {
   }, []);
 
   const isGrid = vw >= 1024;
-  const itemsPerView = vw <= 320 ? 1 : vw < 1024 ? 2 : 0;
+  const itemsPerView = vw <= 767 ? 1 : vw < 1024 ? 2 : 0;
 
   // формируем страницы слайдера
   const pages = useMemo(() => {
