@@ -8,67 +8,66 @@ $btnText:#1B3AB5;
 /* секция: боковые отступы по ТЗ */
 .projects {
   padding-inline: 20px;
-  padding-top: clamp(60px, 100vw/19.2*130, 130px);
-  padding-bottom: clamp(60px, 100vw/19.2*130, 130px);
+  padding-top: clamp(60px, (130/19.2)*1vw, 130px);
+  padding-bottom: clamp(60px, (130/19.2)*1vw, 130px);
 
   @media (min-width: 1440px) { padding-inline: 80px; }
   @media (min-width: 1920px) { padding-inline: 320px; }
 }
 
 .title {
-  margin: 0 0 clamp(40px, 100vw/19.2*80, 80px);
+  margin: 0 0 clamp(40px, (80/19.2)*1vw, 80px);
   color: $title;
   text-align: center;
 
   font-family: Raleway, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 700;
-  font-size: clamp(28px, 100vw/19.2*42, 42px);
+  font-size: clamp(28px, (42/19.2)*1vw, 42px);
   line-height: 1.2;
 }
 
 .list {
   display: grid;
-  gap: clamp(24px, 100vw/19.2*40, 40px);
+  gap: clamp(24px, (40/19.2)*1vw, 40px);
 }
 
 /* карточка: две РАВНЫЕ колонки до 768px */
 .card {
   display: grid;
-  grid-template-columns: 1fr 1fr;    /* 50/50 */
+  grid-template-columns: 1fr 1fr;
   align-items: stretch;
-  min-height: clamp(360px, 100vw/19.2*520, 520px);
-  border-radius: clamp(10px, 100vw/19.2*16, 16px);
-  padding: 0;                        /* НИКАКИХ общих паддингов — чтобы не было щели у картинки */
+  min-height: clamp(360px, (520/19.2)*1vw, 520px);
+  border-radius: clamp(10px, (16/19.2)*1vw, 16px);
+  padding: 0;
   overflow: hidden;
 }
 
 .toneDark {
   background: $dark;
-  .heading, .leadLine { color: #fff; }
+  .heading, .leadText { color: #fff; }
 }
 
 .toneLight {
   background: #f7f7fa;
   .heading { color: $title; }
-  .leadLine { color: $body; }
+  .leadText { color: $body; }
 }
 
-/* левая половина: только тут паддинги */
+/* левая половина */
 .left {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   align-content: start;
-  gap: clamp(12px, 100vw/19.2*24, 24px);
+  gap: clamp(12px, (24/19.2)*1vw, 24px);
 
-  /* вертикальные и горизонтальные отступы — только для текста */
-  padding-top: clamp(16px, 100vw/19.2*60, 60px);
-  padding-bottom: clamp(16px, 100vw/19.2*60, 60px);
-  padding-left: clamp(16px, 100vw/19.2*60, 60px);
-  padding-right: clamp(16px, 100vw/19.2*60, 60px);
+  padding-top: clamp(16px, (60/19.2)*1vw, 60px);
+  padding-bottom: clamp(16px, (60/19.2)*1vw, 60px);
+  padding-left: clamp(16px, (60/19.2)*1vw, 60px);
+  padding-right: clamp(16px, (60/19.2)*1vw, 60px);
 }
 
 .logo {
-  width: clamp(140px, 100vw/19.2*199, 199px);
+  width: clamp(140px, (199/19.2)*1vw, 199px);
   height: auto;
   display: block;
 }
@@ -77,28 +76,30 @@ $btnText:#1B3AB5;
   margin: 0;
   font-family: Raleway, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 700;
-  font-size: clamp(24px, 100vw/19.2*36, 36px);
-  line-height: clamp(30px, 100vw/19.2*42, 42px);
+  font-size: clamp(24px, (36/19.2)*1vw, 36px);
+  line-height: clamp(30px, (42/19.2)*1vw, 42px);
 }
 
+/* новый вариант "лід" */
 .lead {
   display: grid;
-  gap: clamp(6px, 100vw/19.2*8, 8px);
-  margin-bottom: clamp(18px, 100vw/19.2*32, 32px);
+  gap: clamp(6px, (8/19.2)*1vw, 8px);
+  margin-bottom: clamp(18px, (32/19.2)*1vw, 32px);
 }
 
-.leadLine {
+.leadText {
   color: $body;
   font-family: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   font-weight: 400;
-  font-size: clamp(16px, 100vw/19.2*20, 20px);
-  line-height: clamp(22px, 100vw/19.2*26, 26px);
+  font-size: clamp(16px, (20/19.2)*1vw, 20px);
+  line-height: clamp(22px, (26/19.2)*1vw, 26px);
+  margin: 0;
 }
 
 .btn {
-  width: clamp(128px, 100vw/19.2*160, 160px);
-  height: clamp(48px, 100vw/19.2*60, 60px);
-  border-radius: clamp(10px, 100vw/19.2*16, 16px);
+  width: clamp(128px, (160/19.2)*1vw, 160px);
+  height: clamp(48px, (60/19.2)*1vw, 60px);
+  border-radius: clamp(10px, (16/19.2)*1vw, 16px);
   border: none;
   background: $btnBg;
   color: $btnText;
@@ -106,27 +107,27 @@ $btnText:#1B3AB5;
 
   font-family: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   font-weight: 700;
-  font-size: clamp(16px, 100vw/19.2*20, 20px);
+  font-size: clamp(16px, (20/19.2)*1vw, 20px);
   line-height: 1;
   letter-spacing: 0;
 }
 
-/* правая половина: НИКАКИХ паддингов; картинка заполняет всю колонку */
+/* правая половина */
 .right {
   display: grid;
   align-items: stretch;
-  padding: 0;                 /* никаких внутренних отступов никогда */
+  padding: 0;
 }
 
 .image {
   width: 100%;
-  height: 100%;               /* тянем по высоте колонки */
-  object-fit: cover;          /* без “наезда” на текст */
-  border-radius: clamp(10px, 100vw/19.2*16, 16px);
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
   display: block;
 }
 
-/* <768: одна колонка, текст сверху — картинка снизу, центрируем текст */
+/* <768: одна колонка */
 @media (max-width: 768px) {
   .card {
     grid-template-columns: 1fr;
@@ -141,6 +142,6 @@ $btnText:#1B3AB5;
 
   .image {
     width: 100%;
-    height: auto;             /* естественная высота на мобильном */
+    height: auto;
   }
 }

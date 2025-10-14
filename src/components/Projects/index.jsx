@@ -67,22 +67,28 @@ export default function Projects() {
             className={`${s.card} ${p.tone === "dark" ? s.toneDark : s.toneLight}`}
           >
             <div className={s.left}>
-              <img src={p.logo} alt="" className={s.logo} />
+              <img src={p.logo} alt={`Логотип ${p.title}`} className={s.logo} loading="lazy" decoding="async" />
               <h3 className={s.heading}>{p.title}</h3>
 
               <div className={s.lead}>
-                {p.lead.map((line, i) => (
-                  <div key={i} className={s.leadLine}>{line}</div>
-                ))}
+                <p className={s.leadText}>
+                  {Array.isArray(p.lead)
+                    ? p.lead.join(" ").replace(/\s+/g, " ").trim()
+                    : p.lead}
+                </p>
               </div>
 
-              <button className={s.btn} onClick={() => setOpened(p)}>
+              <button
+                type="button"
+                className={s.btn}
+                onClick={() => setOpened(p)}
+              >
                 Детальніше
               </button>
             </div>
 
             <div className={s.right}>
-              <img src={p.image} alt="" className={s.image} />
+              <img src={p.image} alt={`Зображення ${p.title}`} className={s.image} loading="lazy" decoding="async" />
             </div>
           </article>
         ))}

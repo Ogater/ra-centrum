@@ -4,7 +4,13 @@ import logo from "../../assets/logo.png";
 
 const LANGS = ["Укр", "Eng", "Рус"];
 
-export default function Header() {
+/**
+ * Header
+ * @param {{openUp?: boolean}} props
+ *  openUp — если хедер используется внизу страницы (перед футером),
+ *  меню и язык открываются ВВЕРХ.
+ */
+export default function Header({ openUp = false }) {
   const [isLangOpen, setLangOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState(() => localStorage.getItem("lang") || "Укр");
@@ -52,7 +58,7 @@ export default function Header() {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${openUp ? styles.openUp : ""}`}>
       <div className={styles.header__inner}>
         <div className={styles.header__left}>
           <img
@@ -71,7 +77,7 @@ export default function Header() {
         </nav>
 
         <div className={styles.header__right}>
-          {/* десктопный выбор языка */}
+          {/* выбор языка на ≥1025 */}
           <div
             className={`${styles.language} ${isLangOpen ? styles.isOpen : ""}`}
             ref={langRef}
@@ -111,7 +117,7 @@ export default function Header() {
             </ul>
           </div>
 
-          {/* мобильная кнопка-меню ≤1024 */}
+          {/* мобильное меню ≤1024 */}
           <div className={styles.mobile} ref={menuRef}>
             <button
               type="button"
@@ -120,7 +126,6 @@ export default function Header() {
               aria-expanded={isMenuOpen}
               onClick={() => setMenuOpen((v) => !v)}
             >
-              {/* иконка-гамбургер (из ТЗ) */}
               <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="24" height="2" rx="1" fill="#1B3AB5"/>
                 <rect y="8" width="24" height="2" rx="1" fill="#1B3AB5"/>

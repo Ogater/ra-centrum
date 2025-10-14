@@ -19,7 +19,7 @@ export default function App() {
       <Partners />
       <Projects />
       <Contact />
-      <Header />
+      <Header openUp />
       <Footer />
     </>
   );

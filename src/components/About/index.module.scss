@@ -6,9 +6,10 @@ $panel:     #f7f7fa;
 
 /* ===== Section ===== */
 .about {
+  /* 1920 — поля по 320 */
   padding-top: 130px;
   padding-bottom: 32px;
-  padding-left: 320px; /* 1920 */
+  padding-left: 320px;
   padding-right: 320px;
 
   &__title {
@@ -17,7 +18,7 @@ $panel:     #f7f7fa;
     font-weight: 800;
     text-align: center;
     line-height: 1.1;
-    font-size: 56px;         /* 1920/1440 */
+    font-size: 56px;           /* 1920/1440 */
     min-height: 166px;
     display: grid;
     align-items: center;
@@ -25,6 +26,7 @@ $panel:     #f7f7fa;
 
   /* ===== Наша місія ===== */
   &__missionRow {
+    margin-top: 48px;          /* от «Про нас» до блока миссии — 48 */
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 24px;
@@ -39,9 +41,11 @@ $panel:     #f7f7fa;
     color: #fff;
     font-weight: 800;
     white-space: nowrap;
+
     padding: 0 36px;
-    height: clamp(120px, 10vw + 30px, 166px);
-    font-size: clamp(28px, 1.6vw, 36px);
+    height: 166px;
+    font-size: 36px;
+
     display: grid;
     align-items: center;
     justify-items: center;
@@ -53,7 +57,7 @@ $panel:     #f7f7fa;
     background: transparent;
     border: 1px solid $brandBlue;
     padding: 0 36px;
-    height: clamp(120px, 10vw + 30px, 166px);
+    min-height: 166px;
     display: grid;
     align-items: center;
   }
@@ -61,8 +65,9 @@ $panel:     #f7f7fa;
   &__missionText {
     margin: 0;
     font-weight: 600;
-    font-size: clamp(28px, 2.1vw, 40px);
-    line-height: clamp(34px, 2.5vw, 47px);
+    font-size: 40px;
+    line-height: 47px;
+    text-align: left;
   }
   &__missionBlue   { color: $brandBlue; }
   &__missionYellow { color: $yellow; }
@@ -73,65 +78,65 @@ $panel:     #f7f7fa;
   &__whatPanel {
     background: $panel;
     border-radius: 0;
-    padding-block: clamp(40px, 6.3vw, 95.5px);
-    padding-inline: clamp(20px, 8.9vw, 128px);
-    position: relative; /* для центрирования стрелок по всей панели */
+    /* desktop / 1920-1440 — оставляем как было комфортно */
+    padding-top: 95.5px;
+    padding-bottom: 95.5px;
+    padding-left: 128px;
+    padding-right: 128px;
+    position: relative;
+    border-radius: 20px;
   }
 
-  /* ===== Slider ===== */
   &__sliderViewport {
     position: relative;
-    overflow: hidden;   /* окно просмотра */
-    /* убрал min-height — высота теперь только из контента */
+    overflow: hidden;
   }
 
   &__sliderTrack {
     display: flex;
-    /* ширину и transform выставляем инлайном по пикселям из JSX */
     transition: transform 500ms ease-in-out;
     will-change: transform;
   }
 
   &__slide {
-    flex: 0 0 auto;     /* ширину задаём инлайном (равной viewport) */
+    flex: 0 0 auto;
     display: grid;
     justify-items: center;
   }
 
-  /* Заголовок в слайдах */
+  /* заголовок в карточке и основной заголовок первого слайда */
   &__slideTitle,
   &__slideTitleMain {
     text-align: center;
     color: $brand;
     font-weight: 800;
-    font-size: clamp(28px, 2.1vw, 36px);
-    margin-bottom: 32px; /* от заголовка до текста */
+    font-size: 36px;           /* desktop title */
+    margin-bottom: 32px;       /* расстояние от 1-й до 2-й строки */
   }
-
-  /* главный заголовок для первого слайда (визуально как &__whatTitle) */
-  &__slideTitleMain { }
 
   &__whatText {
     margin: 0;
     text-align: center;
     font-weight: 800;
     line-height: 1.25;
-    font-size: clamp(28px, 2.1vw, 40px);
+    font-size: 40px;           /* desktop body */
   }
+
   &__whatYellow { color: $yellow; }
   &__whatBlue   { color: $brandBlue; }
 
-  /* Навигация (стрелки) — центр по высоте панели, 40px от краёв */
+  /* стрелки — центр по высоте панели, 40 от краёв */
   &__whatNav {
     pointer-events: none;
     position: absolute;
-    inset: 0; /* растягиваем на всю панель */
+    inset: 0;
   }
+
   &__whatBtn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 40px;                 /* фикс: 40px от левого края */
+    left: 40px;
     width: 40px;
     height: 40px;
     border: 0;
@@ -144,24 +149,163 @@ $panel:     #f7f7fa;
     pointer-events: auto;
     cursor: pointer;
   }
-  &__whatBtn.isRight { left: auto; right: 40px; } /* фикс: 40px от правого края */
+  &__whatBtn.isRight { left: auto; right: 40px; }
 }
 
-/* ===== Внешние брейки (края/отступ сверху) ===== */
+/* 1440..1919 — края по 80 */
 @media (min-width: 1440px) and (max-width: 1919px) {
   .about { padding-left: 80px; padding-right: 80px; }
 }
+
+/* 1024..1439 — размеры и паддинги по ТЗ */
 @media (min-width: 1024px) and (max-width: 1439px) {
-  .about { padding-top: 110px; padding-left: 62px; padding-right: 62px; }
+  .about {
+    padding-top: 110px;
+    padding-left: 62px;
+    padding-right: 62px;
+
+    &__title { font-size: 48px; }
+
+    &__missionRow { gap: 24px; }
+    &__tab {
+      font-size: 30px;
+      padding-left: 22px;
+      padding-right: 22px;
+      padding-top: 58.5px;
+      padding-bottom: 58.5px;
+      height: auto;
+    }
+    &__missionPanel {
+      padding: 36px;            /* 669×152 ориентир */
+      min-height: 152px;
+      max-width: 669px;
+      justify-self: start;
+    }
+    &__missionText { font-size: 34px; line-height: 1.25; }
+
+    /* Що ми робимо — title 30, body 34; paddings 64/120 */
+    &__whatPanel {
+      padding-top: 64px;
+      padding-bottom: 64px;
+      padding-left: 120px;
+      padding-right: 120px;
+    }
+    &__slideTitle,
+    &__slideTitleMain { font-size: 30px; margin-bottom: 32px; }
+    &__whatText { font-size: 34px; }
+  }
 }
+
+/* 768..1023 — те же размеры шрифтов, но паддинги 56/104 */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .about { padding-top: 110px; padding-left: 32px; padding-right: 32px; }
+  .about {
+    padding-top: 110px;
+    padding-left: 32px;
+    padding-right: 32px;
+
+    &__title { font-size: 48px; }
+
+    &__missionRow { gap: 20px; }
+    &__tab {
+      font-size: 30px;
+      padding-left: 22px;
+      padding-right: 22px;
+      padding-top: 74.5px;
+      padding-bottom: 74.5px;
+      height: auto;
+    }
+    &__missionPanel {
+      padding: 32px;           /* 399×120 ориентир */
+      min-height: 120px;
+      max-width: 399px;
+      justify-self: start;
+    }
+    &__missionText { font-size: 28px; line-height: 1.25; }
+
+    /* Що ми робимо — те же 30/34; paddings 56/104 */
+    &__whatPanel {
+      padding-top: 56px;
+      padding-bottom: 56px;
+      padding-left: 104px;
+      padding-right: 104px;
+    }
+    &__slideTitle,
+    &__slideTitleMain { font-size: 30px; margin-bottom: 32px; }
+    &__whatText { font-size: 34px; }
+  }
 }
+
+/* ≤767 — компактнее внешние поля секции и мобильная компоновка миссии (таб сверху) */
 @media (max-width: 767px) {
   .about {
-    padding-top: 88px; padding-left: 20px; padding-right: 20px;
+    padding-top: 48px;          /* «в минималке меньше… 48 до Про нас» */
+    padding-left: 20px;
+    padding-right: 20px;
 
-    &__missionRow { grid-template-columns: 1fr; gap: 40px; }
-    &__missionPanel { background: #fff; }
+    &__title {
+      font-size: 48px;          /* ≤768 — 48px */
+      min-height: auto;
+      line-height: 1.1;
+    }
+
+    &__missionRow {
+      margin-top: 48px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    /* таб сверху */
+    &__tab {
+      order: 1;
+      width: 280px;
+      height: 70px;
+      padding: 0;
+      font-size: 24px;
+      justify-self: center;
+    }
+
+    /* панель ниже */
+    &__missionPanel {
+      order: 2;
+      padding: 22px;
+      min-height: 124px;
+      max-width: 280px;
+      justify-self: center;
+      text-align: center;
+    }
+
+    &__missionText {
+      font-size: 20px;
+      line-height: 1.25;
+      text-align: center;
+    }
+  }
+}
+
+/* ≤320 — стрелки прячем, свайп остаётся; тексты меньше; паддинги 37/20; межстрочный зазор 12 */
+@media (max-width: 320px) {
+  .about {
+    &__title { font-size: 30px; }
+
+    /* Що ми робимо — по ТЗ */
+    &__whatPanel {
+      padding-top: 37px;
+      padding-bottom: 37px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    &__slideTitle,
+    &__slideTitleMain {
+      font-size: 24px;       /* верхняя надпись */
+      margin-bottom: 12px;   /* между 1-й и 2-й строкой — 12 */
+    }
+    &__whatText { font-size: 22px; } /* нижняя строка */
+
+    /* стрелки скрываем на 320 и меньше */
+    &__whatNav { display: none; }
+
+    /* порядок миссии уже «таб сверху» сохранён */
+    &__missionPanel { max-width: 280px; }
+    &__tab { width: 280px; height: 70px; }
   }
 }

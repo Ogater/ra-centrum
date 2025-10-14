@@ -39,14 +39,26 @@
 /* 320 */
 @media (max-width: 767px) {
   .banners {
-    &__slide {
-      flex-basis: 100%; /* 1 в ряд */
-    }
+    &__slide { flex-basis: 100%; }
 
     &__controls {
       left: 20px;
       bottom: 31px;
       gap: 12px;
+    }
+  }
+  .banners {
+    &__controlBtn {
+      width: 40x;
+      height: 40px;
+    }
+    &__controlBtn img {
+      width: 40px;
+      height: 40px;
+      display: block;
+    }
+    &__subtitle {
+      margin-top: 16px;
     }
   }
 }
