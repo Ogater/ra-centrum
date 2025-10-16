@@ -5,14 +5,21 @@ import member from "../../assets/member.png";
 import LeftArrow2 from "../../assets/LeftArrow2.png";
 import RightArrow2 from "../../assets/RightArrow2.png";
 
+// нові фото для перших трьох
+import worker1 from "../../assets/worker1.jpg";
+import worker2 from "../../assets/worker2.jpg";
+import worker3 from "../../assets/worker3.jpg";
+
 const TEAM = [
-  { id: 1, name: "Степаненко Дмитро", role: "CEO. Експерт з фінансів та оподаткування" },
-  { id: 2, name: "Шевченко Марина",  role: "CAO. Спеціаліст ПСБО та МСФО" },
-  { id: 3, name: "Шевченко Марина",  role: "Консультант з податкового законодавства та бухгалтерського обліку" },
-  { id: 4, name: "Шевченко Марина",  role: "Фахівець зі стратегічного маркетингу і аналітики" },
-  { id: 5, name: "Степаненко Дмитро", role: "Аналітик-маркетолог" },
-  { id: 6, name: "Шевченко Марина",  role: "Консультант з питань права" },
-  { id: 7, name: "Шевченко Марина",  role: "Спеціаліст в сфері IT та розробок" },
+  { id: 1, name: "Оліфіренко Ольга",   role: "CEO. Експерт з фінансів та оподаткування",                                 photo: worker1 },
+  { id: 2, name: "Ліснічук Людмила",   role: "CAO. Спеціаліст ПСБО та МСФО",                                             photo: worker2 },
+  { id: 3, name: "Черемисіна Світлана", role: "Консультант з податкового законодавства та бухгалтерського обліку",       photo: worker3 },
+
+  // інші поки з іконкою member
+  { id: 4, name: "Шевченко Марина",    role: "Фахівець зі стратегічного маркетингу і аналітики" },
+  { id: 5, name: "Степаненко Дмитро",  role: "Аналітик-маркетолог" },
+  { id: 6, name: "Шевченко Марина",    role: "Консультант з питань права" },
+  { id: 7, name: "Шевченко Марина",    role: "Спеціаліст в сфері IT та розробок" },
 ];
 
 export default function Team() {
@@ -27,7 +34,6 @@ export default function Team() {
   const isGrid = vw >= 1024;
   const itemsPerView = vw <= 767 ? 1 : vw < 1024 ? 2 : 0;
 
-  // формируем страницы слайдера
   const pages = useMemo(() => {
     if (!itemsPerView) return [];
     const out = [];
@@ -52,7 +58,6 @@ export default function Team() {
   const handlePrev = () => setPageIndex((i) => Math.max(0, i - 1));
   const handleNext = () => setPageIndex((i) => Math.min(pages.length - 1, i + 1));
 
-  // свайп
   useEffect(() => {
     if (isGrid) return;
     const el = viewportRef.current;
@@ -82,7 +87,6 @@ export default function Team() {
     };
   }, [isGrid, pageIndex]);
 
-  // центр стрелок по центру фотки (измеряем первую видимую)
   useEffect(() => {
     if (isGrid) return;
     const vp = viewportRef.current;
@@ -92,7 +96,7 @@ export default function Team() {
     const place = () => {
       const vpRect = vp.getBoundingClientRect();
       const imgRect = img.getBoundingClientRect();
-      const center = (imgRect.top - vpRect.top) + imgRect.height / 2; // px внутри viewport
+      const center = (imgRect.top - vpRect.top) + imgRect.height / 2;
       vp.style.setProperty("--nav-center", `${center}px`);
     };
 
@@ -117,7 +121,7 @@ export default function Team() {
           {TEAM.map((m) => (
             <article className={styles.card} key={m.id}>
               <div className={styles.card__avatar}>
-                <img className={styles.card__img} src={member} alt={m.name} />
+                <img className={styles.card__img} src={m.photo || member} alt={m.name} />
               </div>
               <h3 className={styles.card__name}>{m.name}</h3>
               <p className={styles.card__role}>{m.role}</p>
@@ -138,7 +142,7 @@ export default function Team() {
                       <div className={styles.card__avatar}>
                         <img
                           className={styles.card__img}
-                          src={member}
+                          src={m.photo || member}
                           alt={m.name}
                           ref={i === 0 && j === 0 ? firstImgRef : null}
                         />
