@@ -9,14 +9,14 @@ import RightArrow2 from "../../assets/RightArrow2.png";
 import worker1 from "../../assets/worker1.jpg";
 import worker2 from "../../assets/worker2.jpg";
 import worker3 from "../../assets/worker3.jpg";
+import worker4 from "../../assets/worker4.jpg";
 
 const TEAM = [
   { id: 1, name: "Оліфіренко Ольга",   role: "CEO. Експерт з фінансів та оподаткування",                                 photo: worker1 },
   { id: 2, name: "Ліснічук Людмила",   role: "CAO. Спеціаліст ПСБО та МСФО",                                             photo: worker2 },
   { id: 3, name: "Черемисіна Світлана", role: "Консультант з податкового законодавства та бухгалтерського обліку",       photo: worker3 },
+  { id: 4, name: "Гурська Ірина",    role: "Фахівець зі стратегічного маркетингу і аналітики",                           photo: worker4 },
 
-  // інші поки з іконкою member
-  { id: 4, name: "Шевченко Марина",    role: "Фахівець зі стратегічного маркетингу і аналітики" },
   { id: 5, name: "Степаненко Дмитро",  role: "Аналітик-маркетолог" },
   { id: 6, name: "Шевченко Марина",    role: "Консультант з питань права" },
   { id: 7, name: "Шевченко Марина",    role: "Спеціаліст в сфері IT та розробок" },

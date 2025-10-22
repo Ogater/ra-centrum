@@ -1,45 +1,38 @@
-/* Contact / index.module.scss */
-
-/* full-bleed фон без белых полос */
 .section {
-  width: 100%;                 /* избегаем горизонтального скролла из-за 100vw */
+  width: 100%;
   min-width: 320px;
-  height: 720px;               /* фиксированная высота для 1920/1440/1024 */
+  min-height: 720px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   scroll-margin-top: 84px;
-  overflow: hidden;            /* ничего не вылезает */
+  overflow: hidden;
 
-  /* ≤768: фон тянется по вертикали, а не по ширине */
   @media (max-width: 768px) {
-    height: auto;              /* растёт по содержимому */
+    min-height: 0;
   }
 }
 
-/* внутренний контейнер сетки сайта (по 100px поля слева/справа) */
 .inner {
-  width: min(1440px, 100% - 200px);
+  width: min(1440px, calc(100% - 200px));
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (max-width: 1023px) {
-    width: calc(100% - 64px);  /* 32px слева/справа как на планшете */
+    width: calc(100% - 64px);
   }
   @media (max-width: 768px) {
-    width: calc(100% - 40px);  /* 20px слева/справа на мобилке */
+    width: calc(100% - 40px);
   }
 }
 
-/* заголовок: от верхнего края секции 98px, до коробок 80px */
 .title {
   margin-top: 98px;
   margin-bottom: 80px;
   text-align: center;
-
   font-family: Raleway, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   font-weight: 700;
   font-size: 64px;
@@ -53,29 +46,29 @@
   @media (max-width: 768px) {
     font-size: 30px;
     line-height: 36px;
-    margin-top: 72px;          /* чуть компактнее на мобилке */
+    margin-top: 72px;
     margin-bottom: 40px;
   }
 }
 
-/* две коробки в ряд, зазор 40px.
-   В СТОЛБИК переходим только при ≤768px */
 .rows {
   display: flex;
   align-items: stretch;
   gap: 40px;
+  justify-content: center;
 
   @media (max-width: 768px) {
     flex-direction: column;
+    padding-bottom: 80px;
+    align-items: center;
   }
 }
 
-/* базовый бокс: 620×376, padding 40, стеклянный градиент */
 .boxBase {
   box-sizing: border-box;
   width: 620px;
-  height: 376px;              /* строго 376 по ТЗ */
-  padding: 40px;              /* по краям внутри 40 */
+  height: 376px;
+  padding: 40px;
   border-radius: 24px;
   border: 1px solid transparent;
   background:
@@ -84,16 +77,14 @@
   backdrop-filter: blur(30px);
   overflow: hidden;
 
-  /* плавно сужаемся до ширины контейнера */
   @media (max-width: 1439px) {
     width: min(620px, 100%);
   }
   @media (max-width: 1023px) {
-    width: min(620px, 100%);  /* остаёмся в один ряд до 1024 */
+    width: min(620px, 100%);
   }
 }
 
-/* левый бокс формы */
 .formBox {
   composes: boxBase;
   display: flex;
@@ -101,35 +92,29 @@
   align-items: flex-start;
 }
 
-/* поля формы: ширина 540 (620 - 40 - 40), высота 60 */
 .inputField {
   box-sizing: border-box;
   width: 540px;
   height: 60px;
   margin: 0;
-
   border-radius: 16px;
   border: 1px solid rgba(215, 216, 228, 0.70);
   background: rgba(255, 255, 255, 0.06);
   padding: 0 24px;
-
   font-family: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   font-weight: 400;
-  font-size: 16px;           /* левый бокс — 16/22 */
+  font-size: 16px;
   line-height: 22px;
   color: #ffffff;
 
-  /* адаптив ширины поля вслед за боксом */
   @media (max-width: 1439px) {
     width: min(540px, 100%);
   }
 }
 
-/* интервалы */
-.inputField + .inputField { margin-top: 12px; }  /* 12 между полями */
-.submitButton { margin-top: 32px; }              /* 32 перед кнопкой */
+.inputField + .inputField { margin-top: 12px; }
+.submitButton { margin-top: 32px; }
 
-/* кнопка 160×60, без внешних нижних маргинов */
 .submitButton {
   width: 160px;
   height: 60px;
@@ -138,16 +123,14 @@
   border: none;
   background: #E3C14A;
   color: #1B3AB5;
-
   font-family: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 26px;
   cursor: pointer;
 
-  /* ≤768: кнопка по центру и на всю ширину, как поле */
   @media (max-width: 768px) {
-    align-self: stretch;        /* растягиваем по ширине формы */
+    align-self: stretch;
     width: 100%;
     display: block;
     margin-left: 0;
@@ -155,23 +138,33 @@
   }
 }
 
-/* правый бокс с контактами */
 .infoBox {
   composes: boxBase;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+  }
 }
 
-/* строки контактов: между строками 16, свои padding не задаём */
 .infoRow {
   display: flex;
   align-items: center;
   gap: 24px;
   padding: 0;
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
 }
+
 .infoRow + .infoRow { margin-top: 16px; }
 
-/* коробка под иконку: 60×60, фон #D7D8E4, без обводки */
 .iconBox {
   width: 60px;
   height: 60px;
@@ -184,33 +177,21 @@
   justify-content: center;
 }
 
-/* текст справа — 20/26 */
 .infoText {
   font-family: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   font-weight: 400;
-  font-size: 20px;         /* правый бокс — 20/26 */
+  font-size: 20px;
   line-height: 26px;
   color: #FFFFFF;
 }
 
-/* ===== КЛЮЧЕВОЙ БРЕЙКПОИНТ: ≤768 — второй бокс уходит вниз,
-   кнопка — по центру и на всю ширину; фон растёт по высоте ===== */
 @media (max-width: 768px) {
-  .rows {
-    flex-direction: column;
-    padding-bottom: 80px;
-  }
-
   .formBox,
   .infoBox {
-    width: 100%;               /* занимают всю доступную ширину контейнера */
+    width: 100%;
   }
 
   .inputField {
-    width: 100%;               /* поля растягиваются по ширине контейнера */
+    width: 100%;
   }
-
-  /* кнопка уже растягивается через @media в .submitButton */
-
-  /* на мобильном фон секции автоматически растёт по высоте (см. .section) */
 }
