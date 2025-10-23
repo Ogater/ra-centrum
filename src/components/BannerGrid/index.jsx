@@ -10,12 +10,13 @@ import leftPng from "../../assets/LeftButton.png";
 import rightPng from "../../assets/RightButton.png";
 
 import Banner from "../Banner/index.jsx";
+import { useTranslation } from "../../i18n/TranslationProvider.jsx";
 
 const BASE = [
-  { img: banner1, title: "Аналітика в медицині", subtitle: "Дослідження в сфері охорони здоров’я. Швидка та якісна обробка даних, генерація висновків для клінік та лабораторій" },
-  { img: banner2, title: "Бізнес та податки", subtitle: "Дослідження ринку, консультації з податкових та фінансових питань. Оптимізація бізнес процесів" },
-  { img: banner3, title: "Наука та технології", subtitle: "Експериментальні розробки, техніко-економічні обґрунтування, впроваження інноваційних рішень" },
-  { img: banner4, title: "Дослідження суспільних процесів", subtitle: "Опитування, моніторинг, аналіз громадської думки" },
+  { img: banner1, titleKey: "Аналітика в медицині", subtitleKey: "Дослідження в сфері охорони здоров’я. Швидка та якісна обробка даних, генерація висновків для клінік та лабораторій" },
+  { img: banner2, titleKey: "Бізнес та податки", subtitleKey: "Дослідження ринку, консультації з податкових та фінансових питань. Оптимізація бізнес процесів" },
+  { img: banner3, titleKey: "Наука та технології", subtitleKey: "Експериментальні розробки, техніко-економічні обґрунтування, впроваження інноваційних рішень" },
+  { img: banner4, titleKey: "Дослідження суспільних процесів", subtitleKey: "Опитування, моніторинг, аналіз громадської думки" },
 ];
 
 const SLIDE_MS = 500;
@@ -41,6 +42,7 @@ function useSlidesPerView() {
 }
 
 export default function BannerGrid() {
+  const { t } = useTranslation();
   const slidesPerView = useSlidesPerView();
   const stepPercent = 100 / slidesPerView;
 
@@ -155,16 +157,21 @@ export default function BannerGrid() {
         >
           {trackData.map((item, i) => (
             <div key={i} className={styles.banners__slide}>
-              <Banner imageSrc={item.img} title={item.title} subtitle={item.subtitle} />
+              <Banner
+                imageSrc={item.img}
+                title={t(item.titleKey)}
+                subtitle={t(item.subtitleKey)}
+                alt={t(item.titleKey)}
+              />
             </div>
           ))}
         </div>
 
         <div className={styles.banners__controls}>
-          <button type="button" className={styles.banners__controlBtn} onClick={handlePrev} aria-label="Previous banner">
+          <button type="button" className={styles.banners__controlBtn} onClick={handlePrev} aria-label={t("Previous banner")}>
             <img src={leftPng} alt="" width="56" height="56" />
           </button>
-          <button type="button" className={styles.banners__controlBtn} onClick={handleNext} aria-label="Next banner">
+          <button type="button" className={styles.banners__controlBtn} onClick={handleNext} aria-label={t("Next banner")}>
             <img src={rightPng} alt="" width="56" height="56" />
           </button>
         </div>
