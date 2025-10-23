@@ -5,7 +5,7 @@ import ru from "../locales/ru.json";
 import uk from "../locales/uk.json";
 
 const dictionaries = { en, ru, uk };
-const DEFAULT_LANG = "uk";
+export const DEFAULT_LANG = "uk";
 export const LANGUAGE_OPTIONS = [
   { code: "uk", labelKey: "Укр" },
   { code: "en", labelKey: "Eng" },

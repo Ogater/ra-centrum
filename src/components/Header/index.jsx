@@ -52,11 +52,14 @@ export default function Header({ openUp = false }) {
     };
   }, []);
 
-  const selectLang = (value) => {
-    setLang(value);
-    setLangOpen(false);
-    setMenuOpen(false);
-  };
+  const selectLang = useCallback(
+    (value) => {
+      setLang(value);
+      setLangOpen(false);
+      setMenuOpen(false);
+    },
+    [setLang]
+  );
 
   const currentLangLabel = useMemo(() => {
     const match = LANGUAGE_OPTIONS.find((item) => item.code === lang);
