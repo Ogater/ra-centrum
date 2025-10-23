@@ -28,18 +28,26 @@ function resolveInitialLang() {
 export function TranslationProvider({ children }) {
   const [lang, setLang] = useState(resolveInitialLang);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const stored = window.localStorage.getItem("lang");
-    const normalized = LEGACY_MAP[stored] || stored;
-    if (normalized && normalized !== lang && dictionaries[normalized]) {
-      setLang(normalized);
-    }
-  }, [lang]);
-
+  // Write current language to localStorage whenever it changes
+  
   useEffect(() => {
     if (typeof window === "undefined") return;
     window.localStorage.setItem("lang", lang);
+  }, [lang]);
+
+  // Sync language if it changes in another tab (storage events don't fire in the same tab)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onStorage = (e) => {
+      if (e.key !== "lang") return;
+      const stored = e.newValue;
+      const normalized = LEGACY_MAP[stored] || stored;
+      if (normalized && normalized !== lang && dictionaries[normalized]) {
+        setLang(normalized);
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
   }, [lang]);
 
   const value = useMemo(() => ({
