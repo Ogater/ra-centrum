@@ -3,11 +3,13 @@ import styles from "./index.module.scss";
 
 import LeftArrow2 from "../../assets/LeftArrow2.png";
 import RightArrow2 from "../../assets/RightArrow2.png";
+import { useTranslation } from "../../i18n/TranslationProvider.jsx";
 
 export default function About() {
   const [slide, setSlide] = useState(0); // 0..2
   const viewportRef = useRef(null);
   const [vw, setVw] = useState(0);
+  const { t } = useTranslation();
 
   const canPrev = slide > 0;
   const canNext = slide < 2;
@@ -76,21 +78,21 @@ export default function About() {
 
   return (
     <section className={styles.about} id="about">
-      <h2 className={styles.about__title}>Про нас</h2>
+      <h2 className={styles.about__title}>{t("Про нас")}</h2>
 
       {/* отступ 48px до миссии — задаётся в SCSS через margin-top */}
       <div className={styles.about__missionRow}>
         <button type="button" className={`${styles.about__tab} ${styles.isActive}`}>
-          Наша місія
+          {t("Наша місія")}
         </button>
 
         <div className={styles.about__missionPanel}>
           <p className={styles.about__missionText}>
-            <span className={styles.about__missionBlue}>Ми&nbsp;</span>
-            <span className={styles.about__missionYellow}>економимо ваш час</span>
-            <span className={styles.about__missionBlue}> — перетворюючи дані на&nbsp;</span>
-            <span className={styles.about__missionYellow}>рішення</span>
-            <span className={styles.about__missionBlue}>.</span>
+            <span className={styles.about__missionBlue}>{t("Ми ")}</span>
+            <span className={styles.about__missionYellow}>{t("економимо ваш час")}</span>
+            <span className={styles.about__missionBlue}>{t(" — перетворюючи дані на ")}</span>
+            <span className={styles.about__missionYellow}>{t("рішення")}</span>
+            <span className={styles.about__missionBlue}>{t(".")}</span>
           </p>
         </div>
       </div>
@@ -108,37 +110,29 @@ export default function About() {
             >
               {/* слайд 0 */}
               <div className={styles.about__slide} style={{ width: vw ? `${vw}px` : undefined }}>
-                <div className={styles.about__slideTitleMain}>Що ми робимо:</div>
+                <div className={styles.about__slideTitleMain}>{t("Що ми робимо:")}</div>
                 <p className={styles.about__whatText}>
-                  <span className={styles.about__whatYellow}>збираємо та структуруємо</span>
-                  <span className={styles.about__whatBlue}>
-                    &nbsp;дані, аналізуємо їх і формуємо практичні висновки.
-                  </span>
+                  <span className={styles.about__whatYellow}>{t("збираємо та структуруємо")}</span>
+                  <span className={styles.about__whatBlue}>{t(" дані, аналізуємо їх і формуємо практичні висновки.")}</span>
                 </p>
               </div>
 
               {/* слайд 1 */}
               <div className={styles.about__slide} style={{ width: vw ? `${vw}px` : undefined }}>
-                <div className={styles.about__slideTitle}>Як ми це робимо:</div>
+                <div className={styles.about__slideTitle}>{t("Як ми це робимо:")}</div>
                 <p className={styles.about__whatText}>
-                  <span className={styles.about__whatYellow}>швидко, професійно,</span>
-                  <span className={styles.about__whatBlue}>
-                    &nbsp;з використанням сучасних методів дослідження та перевірених джерел.
-                  </span>
+                  <span className={styles.about__whatYellow}>{t("швидко, професійно,")}</span>
+                  <span className={styles.about__whatBlue}>{t(" з використанням сучасних методів дослідження та перевірених джерел.")}</span>
                 </p>
               </div>
 
               {/* слайд 2 */}
               <div className={styles.about__slide} style={{ width: vw ? `${vw}px` : undefined }}>
-                <div className={styles.about__slideTitle}>Для кого:</div>
+                <div className={styles.about__slideTitle}>{t("Для кого:")}</div>
                 <p className={styles.about__whatText}>
-                  <span className={styles.about__whatBlue}>
-                    для тих, хто хоче приймати обґрунтовані рішення
-                  </span>
-                  <span className={styles.about__whatYellow}>
-                    &nbsp;без витрати часу на самостійний пошук
-                  </span>
-                  <span className={styles.about__whatBlue}>&nbsp;і аналіз даних.</span>
+                  <span className={styles.about__whatBlue}>{t("для тих, хто хоче приймати обґрунтовані рішення")}</span>
+                  <span className={styles.about__whatYellow}>{t(" без витрати часу на самостійний пошук")}</span>
+                  <span className={styles.about__whatBlue}>{t(" і аналіз даних.")}</span>
                 </p>
               </div>
             </div>
@@ -150,7 +144,7 @@ export default function About() {
               <button
                 type="button"
                 className={styles.about__whatBtn}
-                aria-label="Попередній"
+                aria-label={t("Попередній")}
                 onClick={goPrev}
               >
                 <img src={LeftArrow2} alt="" width="40" height="40" />
@@ -160,7 +154,7 @@ export default function About() {
               <button
                 type="button"
                 className={`${styles.about__whatBtn} ${styles.isRight}`}
-                aria-label="Наступний"
+                aria-label={t("Наступний")}
                 onClick={goNext}
               >
                 <img src={RightArrow2} alt="" width="40" height="40" />
