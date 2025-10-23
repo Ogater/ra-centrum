@@ -10,6 +10,7 @@ import worker1 from "../../assets/worker1.jpg";
 import worker2 from "../../assets/worker2.jpg";
 import worker3 from "../../assets/worker3.jpg";
 import worker4 from "../../assets/worker4.jpg";
+import worker5 from "../../assets/worker5.jpg";
 
 const TEAM = [
   { id: 1, name: "Оліфіренко Ольга",   role: "CEO. Експерт з фінансів та оподаткування",                                 photo: worker1 },
@@ -19,7 +20,7 @@ const TEAM = [
 
   { id: 5, name: "Степаненко Дмитро",  role: "Аналітик-маркетолог" },
   { id: 6, name: "Шевченко Марина",    role: "Консультант з питань права" },
-  { id: 7, name: "Шевченко Марина",    role: "Спеціаліст в сфері IT та розробок" },
+  { id: 7, name: "Михайло Сельдін",    role: "Спеціаліст в сфері IT та розробок",                                        photo: worker5 },
 ];
 
 export default function Team() {
