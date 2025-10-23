@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import styles from "./project-modal.module.scss";
+import { useTranslation } from "../../i18n/TranslationProvider.jsx";
 
 export default function ProjectModal({
   title,
@@ -12,6 +13,7 @@ export default function ProjectModal({
   onClose,
 }) {
   const wndRef = useRef(null);
+  const { t } = useTranslation();
 
   // Esc закрывает
   useEffect(() => {
@@ -39,7 +41,7 @@ export default function ProjectModal({
         <button
           type="button"
           className={styles.modal__close}
-          aria-label="Закрити модальне вікно"
+          aria-label={t("Закрити модальне вікно")}
           onClick={onClose}
         >
           ×

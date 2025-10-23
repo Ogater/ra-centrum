@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import logo from "../../assets/logo.png";
-
-const LANGS = ["Укр", "Eng", "Рус"];
+import { LANGUAGE_OPTIONS, useTranslation } from "../../i18n/TranslationProvider.jsx";
 
 /**
  * Header
@@ -13,7 +12,7 @@ const LANGS = ["Укр", "Eng", "Рус"];
 export default function Header({ openUp = false }) {
   const [isLangOpen, setLangOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [lang, setLang] = useState(() => localStorage.getItem("lang") || "Укр");
+  const { lang, setLang, t } = useTranslation();
 
   const langRef = useRef(null);
   const menuRef = useRef(null);
@@ -40,7 +39,10 @@ export default function Header({ openUp = false }) {
       if (menuRef.current && !menuRef.current.contains(ev.target)) setMenuOpen(false);
     };
     const onEsc = (ev) => {
-      if (ev.key === "Escape") { setLangOpen(false); setMenuOpen(false); }
+      if (ev.key === "Escape") {
+        setLangOpen(false);
+        setMenuOpen(false);
+      }
     };
     document.addEventListener("click", onDocClick);
     document.addEventListener("keydown", onEsc);
@@ -52,10 +54,14 @@ export default function Header({ openUp = false }) {
 
   const selectLang = (value) => {
     setLang(value);
-    localStorage.setItem("lang", value);
     setLangOpen(false);
     setMenuOpen(false);
   };
+
+  const currentLangLabel = useMemo(() => {
+    const match = LANGUAGE_OPTIONS.find((item) => item.code === lang);
+    return match ? t(match.labelKey) : lang?.toUpperCase?.() || "";
+  }, [lang, t]);
 
   return (
     <header className={`${styles.header} ${openUp ? styles.openUp : ""}`}>
@@ -70,10 +76,28 @@ export default function Header({ openUp = false }) {
           />
         </div>
 
-        <nav className={styles.header__nav} aria-label="Основне меню">
-          <a className={styles.header__navLink} href="#about" onClick={(e)=>handleSmoothAnchor(e,"about")}>Про нас</a>
-          <a className={styles.header__navLink} href="#projects" onClick={handleProjectsClick}>Наші проєкти</a>
-          <a className={styles.header__navLink} href="#contacts" onClick={(e)=>handleSmoothAnchor(e,"contacts")}>Звʼязатися з нами</a>
+        <nav className={styles.header__nav} aria-label={t("Основне меню")}>
+          <a
+            className={styles.header__navLink}
+            href="#about"
+            onClick={(e) => handleSmoothAnchor(e, "about")}
+          >
+            {t("Про нас")}
+          </a>
+          <a
+            className={styles.header__navLink}
+            href="#projects"
+            onClick={handleProjectsClick}
+          >
+            {t("Наші проєкти")}
+          </a>
+          <a
+            className={styles.header__navLink}
+            href="#contacts"
+            onClick={(e) => handleSmoothAnchor(e, "contacts")}
+          >
+            {t("Звʼязатися з нами")}
+          </a>
         </nav>
 
         <div className={styles.header__right}>
@@ -89,7 +113,7 @@ export default function Header({ openUp = false }) {
               aria-expanded={isLangOpen}
               onClick={() => setLangOpen((v) => !v)}
             >
-              <span className={styles.language__current}>{lang}</span>
+              <span className={styles.language__current}>{currentLangLabel}</span>
               <svg
                 className={styles.language__caret}
                 width="12"
@@ -98,20 +122,27 @@ export default function Header({ openUp = false }) {
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-                <path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="#1B3AB5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path
+                  d="M1 1.5L6 6.5L11 1.5"
+                  fill="none"
+                  stroke="#1B3AB5"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
 
-            <ul className={styles.language__menu} role="listbox" aria-label="Вибір мови">
-              {LANGS.map((item) => (
+            <ul className={styles.language__menu} role="listbox" aria-label={t("Вибір мови")}>
+              {LANGUAGE_OPTIONS.map((item) => (
                 <li
-                  key={item}
+                  key={item.code}
                   role="option"
-                  aria-selected={lang === item}
-                  className={`${styles.language__item} ${lang === item ? styles.isActive : ""}`}
-                  onClick={() => selectLang(item)}
+                  aria-selected={lang === item.code}
+                  className={`${styles.language__item} ${lang === item.code ? styles.isActive : ""}`}
+                  onClick={() => selectLang(item.code)}
                 >
-                  {item}
+                  {t(item.labelKey)}
                 </li>
               ))}
             </ul>
@@ -127,9 +158,9 @@ export default function Header({ openUp = false }) {
               onClick={() => setMenuOpen((v) => !v)}
             >
               <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect width="24" height="2" rx="1" fill="#1B3AB5"/>
-                <rect y="8" width="24" height="2" rx="1" fill="#1B3AB5"/>
-                <rect y="16" width="24" height="2" rx="1" fill="#1B3AB5"/>
+                <rect width="24" height="2" rx="1" fill="#1B3AB5" />
+                <rect y="8" width="24" height="2" rx="1" fill="#1B3AB5" />
+                <rect y="16" width="24" height="2" rx="1" fill="#1B3AB5" />
               </svg>
             </button>
 
@@ -138,30 +169,45 @@ export default function Header({ openUp = false }) {
                 href="#about"
                 className={styles.mobile__link}
                 role="menuitem"
-                onClick={(e)=>{ handleSmoothAnchor(e,"about"); setMenuOpen(false); }}
-              >Про нас</a>
+                onClick={(e) => {
+                  handleSmoothAnchor(e, "about");
+                  setMenuOpen(false);
+                }}
+              >
+                {t("Про нас")}
+              </a>
               <a
                 href="#projects"
                 className={styles.mobile__link}
                 role="menuitem"
-                onClick={(e)=>{ handleSmoothAnchor(e,"projects"); setMenuOpen(false); }}
-              >Наші проєкти</a>
+                onClick={(e) => {
+                  handleSmoothAnchor(e, "projects");
+                  setMenuOpen(false);
+                }}
+              >
+                {t("Наші проєкти")}
+              </a>
               <a
                 href="#contacts"
                 className={styles.mobile__link}
                 role="menuitem"
-                onClick={(e)=>{ handleSmoothAnchor(e,"contacts"); setMenuOpen(false); }}
-              >Звʼязатися з нами</a>
+                onClick={(e) => {
+                  handleSmoothAnchor(e, "contacts");
+                  setMenuOpen(false);
+                }}
+              >
+                {t("Звʼязатися з нами")}
+              </a>
 
-              <div className={styles.mobile__langs} role="listbox" aria-label="Вибір мови">
-                {LANGS.map((item)=>(
+              <div className={styles.mobile__langs} role="listbox" aria-label={t("Вибір мови")}>
+                {LANGUAGE_OPTIONS.map((item) => (
                   <button
-                    key={item}
+                    key={item.code}
                     type="button"
-                    className={`${styles.mobile__lang} ${lang===item?styles.isActive:""}`}
-                    onClick={()=>selectLang(item)}
+                    className={`${styles.mobile__lang} ${lang === item.code ? styles.isActive : ""}`}
+                    onClick={() => selectLang(item.code)}
                   >
-                    {item}
+                    {t(item.labelKey)}
                   </button>
                 ))}
               </div>
