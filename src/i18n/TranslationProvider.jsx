@@ -1,9 +1,15 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-import { DEFAULT_LANG, DICTIONARIES, LEGACY_LANGUAGE_MAP } from "./languages.js";
+import {
+  DEFAULT_LANG,
+  LANGUAGE_OPTIONS,
+  DICTIONARIES,
+  LEGACY_LANGUAGE_MAP,
+} from "./languages.js";
 
 const I18nContext = createContext({
   lang: DEFAULT_LANG,
+  languageOptions: [],
   setLang: () => {},
   t: (key) => key,
 });
@@ -34,15 +40,19 @@ export function TranslationProvider({ children }) {
     window.localStorage.setItem("lang", lang);
   }, [lang]);
 
-  const value = useMemo(() => ({
-    lang,
-    setLang: (nextLang) => {
-      if (DICTIONARIES[nextLang]) {
-        setLang(nextLang);
-      }
-    },
-    t: (key) => DICTIONARIES[lang]?.[key] ?? key,
-  }), [lang]);
+  const value = useMemo(
+    () => ({
+      lang,
+      languageOptions: LANGUAGE_OPTIONS,
+      setLang: (nextLang) => {
+        if (DICTIONARIES[nextLang]) {
+          setLang(nextLang);
+        }
+      },
+      t: (key) => DICTIONARIES[lang]?.[key] ?? key,
+    }),
+    [lang]
+  );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
