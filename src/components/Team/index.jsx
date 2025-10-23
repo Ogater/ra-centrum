@@ -11,19 +11,21 @@ import worker2 from "../../assets/worker2.jpg";
 import worker3 from "../../assets/worker3.jpg";
 import worker4 from "../../assets/worker4.jpg";
 import worker5 from "../../assets/worker5.jpg";
+import { useTranslation } from "../../i18n/TranslationProvider.jsx";
 
 const TEAM = [
-  { id: 1, name: "Оліфіренко Ольга",   role: "CEO. Експерт з фінансів та оподаткування",                                 photo: worker1 },
-  { id: 2, name: "Ліснічук Людмила",   role: "CAO. Спеціаліст ПСБО та МСФО",                                             photo: worker2 },
-  { id: 3, name: "Черемисіна Світлана", role: "Консультант з податкового законодавства та бухгалтерського обліку",       photo: worker3 },
-  { id: 4, name: "Гурська Ірина",    role: "Фахівець зі стратегічного маркетингу і аналітики",                           photo: worker4 },
+  { id: 1, nameKey: "Оліфіренко Ольга",   roleKey: "CEO. Експерт з фінансів та оподаткування",                                 photo: worker1 },
+  { id: 2, nameKey: "Ліснічук Людмила",   roleKey: "CAO. Спеціаліст ПСБО та МСФО",                                             photo: worker2 },
+  { id: 3, nameKey: "Черемисіна Світлана", roleKey: "Консультант з податкового законодавства та бухгалтерського обліку",       photo: worker3 },
+  { id: 4, nameKey: "Гурська Ірина",    roleKey: "Фахівець зі стратегічного маркетингу і аналітики",                           photo: worker4 },
 
-  { id: 5, name: "Степаненко Дмитро",  role: "Аналітик-маркетолог" },
-  { id: 6, name: "Шевченко Марина",    role: "Консультант з питань права" },
-  { id: 7, name: "Михайло Сельдін",    role: "Спеціаліст в сфері IT та розробок",                                        photo: worker5 },
+  { id: 5, nameKey: "Степаненко Дмитро",  roleKey: "Аналітик-маркетолог" },
+  { id: 6, nameKey: "Шевченко Марина",    roleKey: "Консультант з питань права" },
+  { id: 7, nameKey: "Михайло Сельдін",    roleKey: "Спеціаліст в сфері IT та розробок",                                        photo: worker5 },
 ];
 
 export default function Team() {
+  const { t } = useTranslation();
   const [vw, setVw] = useState(typeof window !== "undefined" ? window.innerWidth : 1920);
 
   useEffect(() => {
@@ -69,7 +71,7 @@ export default function Team() {
 
     const start = (e) => { s.on = true; s.x0 = e.touches ? e.touches[0].clientX : e.clientX; s.dx = 0; };
     const move  = (e) => { if (!s.on) return; const x = e.touches ? e.touches[0].clientX : e.clientX; s.dx = x - s.x0; };
-    const end   = () => { if (!s.on) return; if (Math.abs(s.dx) > TH) { s.dx < 0 ? handleNext() : handlePrev(); } s.on = false; };
+    const end   = () => { if (!s.on) return; if (Math.abs(s.dx) > TH) { s.dx < 0 ? handleNext() : handlePrev(); } s.on = false; s.dx = 0; };
 
     el.addEventListener("touchstart", start, { passive: true });
     el.addEventListener("touchmove",  move,  { passive: true });
@@ -115,17 +117,17 @@ export default function Team() {
 
   return (
     <section className={styles.team} id="team">
-      <h2 className={styles.team__title}>Команда</h2>
+      <h2 className={styles.team__title}>{t("Команда")}</h2>
 
       {isGrid ? (
         <div className={styles.team__grid}>
           {TEAM.map((m) => (
             <article className={styles.card} key={m.id}>
               <div className={styles.card__avatar}>
-                <img className={styles.card__img} src={m.photo || member} alt={m.name} />
+                <img className={styles.card__img} src={m.photo || member} alt={t(m.nameKey)} />
               </div>
-              <h3 className={styles.card__name}>{m.name}</h3>
-              <p className={styles.card__role}>{m.role}</p>
+              <h3 className={styles.card__name}>{t(m.nameKey)}</h3>
+              <p className={styles.card__role}>{t(m.roleKey)}</p>
             </article>
           ))}
         </div>
@@ -144,12 +146,12 @@ export default function Team() {
                         <img
                           className={styles.card__img}
                           src={m.photo || member}
-                          alt={m.name}
+                          alt={t(m.nameKey)}
                           ref={i === 0 && j === 0 ? firstImgRef : null}
                         />
                       </div>
-                      <h3 className={styles.card__name}>{m.name}</h3>
-                      <p className={styles.card__role}>{m.role}</p>
+                      <h3 className={styles.card__name}>{t(m.nameKey)}</h3>
+                      <p className={styles.card__role}>{t(m.roleKey)}</p>
                     </article>
                   ))}
                 </div>
@@ -158,12 +160,12 @@ export default function Team() {
 
             <div className={styles.slider__nav}>
               {canPrev && (
-                <button type="button" className={styles.slider__btn} aria-label="Попередній" onClick={handlePrev}>
+                <button type="button" className={styles.slider__btn} aria-label={t("Попередній")} onClick={handlePrev}>
                   <img src={LeftArrow2} alt="" width="40" height="40" />
                 </button>
               )}
               {canNext && (
-                <button type="button" className={`${styles.slider__btn} ${styles.isRight}`} aria-label="Наступний" onClick={handleNext}>
+                <button type="button" className={`${styles.slider__btn} ${styles.isRight}`} aria-label={t("Наступний")} onClick={handleNext}>
                   <img src={RightArrow2} alt="" width="40" height="40" />
                 </button>
               )}
