@@ -11,6 +11,8 @@ import worker2 from "../../assets/worker2.jpg";
 import worker3 from "../../assets/worker3.jpg";
 import worker4 from "../../assets/worker4.jpg";
 import worker5 from "../../assets/worker5.jpg";
+import worker6 from "../../assets/worker6.jpg";
+
 import { useTranslation } from "../../i18n/TranslationProvider.jsx";
 
 const TEAM = [
@@ -19,9 +21,9 @@ const TEAM = [
   { id: 3, nameKey: "Черемисіна Світлана", roleKey: "Консультант з податкового законодавства та бухгалтерського обліку",       photo: worker3 },
   { id: 4, nameKey: "Гурська Ірина",    roleKey: "Фахівець зі стратегічного маркетингу і аналітики",                           photo: worker4 },
 
-  // { id: 5, nameKey: "Степаненко Дмитро",  roleKey: "Аналітик-маркетолог" },
+  { id: 5, nameKey: "Дарина Бубнова",  roleKey: "Аналітик-маркетолог",                                                         photo: worker6 },
   // { id: 6, nameKey: "Шевченко Марина",    roleKey: "Консультант з питань права" },
-  { id: 5, nameKey: "Михайло Сельдін",    roleKey: "Спеціаліст в сфері IT та розробок",                                        photo: worker5 },
+  { id: 6, nameKey: "Михайло Сельдін",    roleKey: "Спеціаліст в сфері IT та розробок",                                        photo: worker5 },
 ];
 
 export default function Team() {
