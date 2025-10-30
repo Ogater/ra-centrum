@@ -161,6 +161,7 @@ export default function About() {
               </button>
             )}
           </div>
+          <div className={styles.about__counter} aria-live="polite">{`${slide + 1} / 3`}</div>
         </div>
       </div>
     </section>

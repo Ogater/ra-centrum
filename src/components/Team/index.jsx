@@ -172,6 +172,9 @@ export default function Team() {
                 </button>
               )}
             </div>
+            <div className={styles.slider__counter} aria-live="polite">
+              {itemsPerView === 1 ? `${pageIndex + 1} / ${TEAM.length}` : `${pageIndex + 1} / ${pages.length}`}
+            </div>
           </div>
         </div>
       )}

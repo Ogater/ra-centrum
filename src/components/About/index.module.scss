@@ -196,6 +196,35 @@ $panel:     #f7f7fa;
   }
 }
 
+/* Mobile counter for What we do */
+.about__counter {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 2px 8px rgba(22, 37, 109, 0.12);
+  color: $brandBlue;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1;
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .about__counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    text-align: center;
+  }
+  /* prevent counter overlapping text */
+  .about__whatPanel { padding-bottom: 76px; }
+}
+
 /* 768..1023 — те же размеры шрифтов, но паддинги 56/104 */
 @media (min-width: 768px) and (max-width: 1023px) {
   .about {
